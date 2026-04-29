@@ -1,0 +1,16 @@
+model:
+  alpha: 0.33
+  beta: 0.99
+  delta: 0.025
+  rho: 0.95
+  sigma: 1.0
+  phi: 1.0
+  psi: 1.75
+  chi: 1.0
+  gy_ratio: 0.2
+  kappa: 0.1
+  phi_pi: 1.5
+  phi_y: 0.125
+  rho_g: 0.95
+  rho_z: 0.95
+  rho_b: 0.95
