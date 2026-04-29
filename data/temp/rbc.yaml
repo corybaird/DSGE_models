@@ -1,0 +1,30 @@
+
+        declarations:
+          name: 'RBC'
+          variables: [y, c, i, k, l, w, r, z, rn]
+          parameters: [alpha, beta, delta, rho, sigma, phi, x_bar]
+          shocks: [e_z]
+        equations:
+          model:
+            ~ 1 = beta * (c/c(+1)) * (r(+1) + 1 - delta)
+            ~ w = phi * l * c
+            ~ y = c + i
+            ~ y = z * k(-1)**alpha * l**(1-alpha)
+            ~ w = (1-alpha) * y / l
+            ~ rn = alpha * y / k(-1)
+            ~ k = (1-delta) * k(-1) + i
+            ~ z = 1 - rho + rho * z(-1) + e_z
+          constraint:
+            ~ r = rn
+        calibration:
+          parameters:
+            alpha: 0.33
+            beta: 0.99
+            delta: 0.025
+            rho: 0.9
+            sigma: 1.0
+            phi: 1.0
+            x_bar: -1.0
+          covariances:
+            e_z: 0.01
+        
