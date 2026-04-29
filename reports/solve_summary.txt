@@ -1,0 +1,6 @@
+DSGE Native Solver Summary
+==========================
+
+Standard RBC Solved. G[0,0]: 0.0000
+NK Model Solved. G[0,0]: 0.0000
+Sims RBC Solved. G[0,0]: 0.0000

@@ -1,0 +1,41 @@
+import pydsge
+from pathlib import Path
+
+class NKPyDSGEModel:
+    def __init__(self):
+        self.yaml_str = """
+        declarations:
+          name: 'NK'
+          variables: [y, pi, i, g, z, rn]
+          parameters: [beta, sigma, kappa, phi_pi, phi_y, rho_g, rho_z, x_bar]
+          shocks: [e_g, e_z]
+        equations:
+          model:
+            ~ y = y(+1) - (1/sigma)*(i - pi(+1)) + g
+            ~ pi = beta*pi(+1) + kappa*y + z
+            ~ rn = phi_pi*pi + phi_y*y
+            ~ g = rho_g * g(-1) + e_g
+            ~ z = rho_z * z(-1) + e_z
+          constraint:
+            ~ i = rn
+        calibration:
+          parameters:
+            beta: 0.99
+            sigma: 1.0
+            kappa: 0.1
+            phi_pi: 1.5
+            phi_y: 0.125
+            rho_g: 0.8
+            rho_z: 0.5
+            x_bar: 0.0
+          covariances:
+            e_g: 0.01
+            e_z: 0.01
+        """
+        yaml_path = Path("data/temp/nk.yaml")
+        yaml_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(yaml_path, "w") as f:
+            f.write(self.yaml_str)
+        
+        self.model = pydsge.DSGE.read(str(yaml_path))
+        self.model.gen_sys()
