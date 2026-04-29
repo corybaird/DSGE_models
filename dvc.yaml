@@ -1,0 +1,15 @@
+stages:
+  solve_rbc:
+    cmd: /opt/homebrew/bin/uv run python -m src.pipeline.pipeline
+    deps:
+      - src/pipeline/pipeline.py
+      - src/models/rbc_pydsge.py
+    params:
+      - model.alpha
+      - model.beta
+      - model.delta
+      - model.rho
+      - model.sigma
+      - model.phi
+    outs:
+      - reports/rbc_irfs.txt
